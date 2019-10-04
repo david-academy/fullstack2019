@@ -21,6 +21,7 @@ const addName = (event)=>{
               setPersons(returnedPersons)
               notify(`${returnedPerson.name}'s number has been updated`)
             })
+        
       }
     }
     else {
@@ -36,6 +37,9 @@ const addName = (event)=>{
     setNewName('')
     setNewNumber('')
     notify(`Added ${returnedPerson.name}`)
+  })
+  .catch(error =>{
+    notify(error.response.data.error)
   })
 }
 }

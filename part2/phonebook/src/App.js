@@ -35,7 +35,7 @@ const App = (props) => {
        personService
        .deletePerson(id)
        .then(() => {
-         setPersons(persons.filter(p=> p.id !==p.id))
+         setPersons(persons.filter(p=> p.id !==id))
          notify(`${person.name} was removed`) 
         
        })
