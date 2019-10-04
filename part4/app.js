@@ -6,6 +6,7 @@ const cors = require('cors')
 const blogRouter = require('./controllers/blogs')
 const userRouter = require('./controllers/users')
 const mongoose = require('mongoose')
+const loginRouter = require('./controllers/login')
 
 const mongoUrl = config.mongoUrl
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json())
 
 app.use('/api/users', userRouter)
 app.use('/api/blogs', blogRouter)
+app.use('/api/login', loginRouter)
 
 module.exports = app
 

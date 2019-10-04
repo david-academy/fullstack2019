@@ -11,9 +11,10 @@ userRouter.get('/', async (request, response) => {
     response.json(users.map(u => u.toJSON()))
   })
 userRouter.post('/', async(request, response)=>{
+    
+    const body = request.body
+        if(body.password.length >2){
     try {
-        const body = request.body
-
         const saltRounds = 10
         const passwordHash = await bcrypt.hash(body.password, saltRounds)
 
@@ -27,8 +28,12 @@ userRouter.post('/', async(request, response)=>{
 
         response.json(savedUser)
     } catch (exception){
-        '404'
+        console.log('something is wrong: ', exception)
     }
+} else {
+    response.status(400).json({error: 'Password missing or to short! (minimum 3 charachters)'})
+    console.log('Password missing or to short! (minimum 3 charachters)')
+}
 })
 
 module.exports = userRouter
